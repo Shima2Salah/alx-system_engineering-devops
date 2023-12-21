@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # print list of files
 place=$(ls)
-for i in { $place }
+for i in $place
 do
     echo "$i" | cut -d "-" -f 2
 done
