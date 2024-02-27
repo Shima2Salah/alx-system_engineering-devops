@@ -13,19 +13,17 @@ echo "<!DOCTYPE html>
   <h1>Ceci n'est pas une page</h1>
 </body>
 </html>" > /var/www/html/404.html
-
 echo "
 server {
   listen 80;
 
   location / {
-    try_files $uri $uri/ /404.html;
+    try_files \$request_uri \$request_uri/ /404.html;
   }
 
   error_page 404 /404.html;
 }
 " > /etc/nginx/sites-available/default
-
 rm -f /etc/nginx/sites-enabled/default
 ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 sudo service nginx restart
