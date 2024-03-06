@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#connect to your server using private key
+ssh ubuntu@3.94.213.159
