@@ -1,26 +1,16 @@
 #!/usr/bin/env bash
-#installing and configuring HAProxy for load balancing
-
-sudo apt-get update
-sudo apt-get -y install --no-install-recommends software-properties-common
-sudo add-apt-repository ppa:vbernat/haproxy-2.4
-sudo apt-get -y install haproxy=2.4.\*
-
-musconfig=\
-"
-backend shimaasalah-back
-        mode http
+# This script configures the load balancer.
+apt-get install software-properties-common -y
+add-apt-repository ppa:vbernat/haproxy-2.4 -y
+apt-get update -y
+apt-get install haproxy=2.4.\* -y
+echo "backend web-backend
         balance roundrobin
         server 507821-web-01 52.87.211.200:80 check
         server 507821-web-02 34.229.69.61:80 check
-frontend shimaasalah-front
+
+frontend http
         bind *:80
         mode http
-        default_backend shimaasalah-back
-"
-sudo echo "$musconfig" >> /etc/haproxy/haproxy.cfg
-if [ "$(pgrep -c haproxy)" -le 0 ]; then
-	sudo service haproxy start
-else
-	sudo service haproxy restart
-fi
+        default_backend web-backend" >> /etc/haproxy/haproxy.cfg
+service haproxy restart
