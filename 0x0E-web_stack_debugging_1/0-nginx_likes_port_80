@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# trouble shooting why our server is not working
-rm /etc/nginx/sites-enabled/default
-ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+# This script configures the http response saying which server is serving.
+apt-get -y update
+apt-get -y install nginx
+sed -ie "s/^server_name _; {$/server_name _; \n\tadd_header X-Served-By \$hostname;/g" /etc/nginx/sites-available/default
 service nginx restart
