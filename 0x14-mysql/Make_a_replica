@@ -18,5 +18,7 @@ SHOW MASTER STATUS;
 sudo service mysql restart
 mysqldump -u root -p tyrell_corp > tyrell_cor.sql
 scp tyrell_cor.sql ubuntu@34.239.207.152:/tmp/
+#on web-02
+ls /tmp/tyrell_cor.sql
 
 
