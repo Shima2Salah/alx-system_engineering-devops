@@ -1,19 +1,11 @@
 #!/usr/bin/env bash
-# This script configures the server load balancer.
-sudo apt-get install software-properties-common -y
-sudo add-apt-repository ppa:vbernat/haproxy-2.4 -y
+# Install the load balancer
+
+
 sudo apt-get -y update
 sudo apt-get -y upgrade
-sudo apt-get install haproxy=2.4.\* -y
+sudo apt-get -y install haproxy
 sudo sed -i 's/ENABLED=0/ENABLED=1/' /etc/default/haproxy
 sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.original
-echo "backend web-backend
-        balance roundrobin
-        server 507821-web-01 100.26.246.108:80 check
-        server 507821-web-02 34.239.207.152:80 check
-
-frontend http
-        bind *:80
-        mode http
-        default_backend web-backend" >> /etc/haproxy/haproxy.cfg
+sudo sed -i "$ a\listen 507821-lb-01\n\tbind *:80\n\tmode http\n\tbalance roundrobin\n\toption httpclose\n\toption forwardfor\n\tserver 507821-web-02 34.239.207.152:80 check\n\tserver 507821-web-01 100.26.246.108:80 check" /etc/haproxy/haproxy.cfg
 sudo service haproxy start
