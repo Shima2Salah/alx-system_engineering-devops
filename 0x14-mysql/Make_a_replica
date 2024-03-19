@@ -1,6 +1,9 @@
-in web-01 get ssh-keygen
-Enter file in which to save the key (/home/ubuntu/.ssh/id_rsa): /home/ubuntu/.ssh/new_rsa
-copy key from vi new_rsa.pub
-paste it in web-02 vi authorized_keys
+#in web-01 get 
+ssh-keygen
+#Enter file in which to save the key (/home/ubuntu/.ssh/id_rsa): /home/ubuntu/.ssh/new_rsa
+#copy key from 
+vi new_rsa.pub
+#paste it in web-02 
+vi authorized_keys
 
 sudo vi /etc/ssh/ssh_config
