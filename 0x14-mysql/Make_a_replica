@@ -1,9 +1,22 @@
-#in web-01 get 
+#in web-01 get
 ssh-keygen
 #Enter file in which to save the key (/home/ubuntu/.ssh/id_rsa): /home/ubuntu/.ssh/new_rsa
 #copy key from 
 vi new_rsa.pub
+#for checking ssh configuration sudo vi /etc/ssh/ssh_config
+#add this without comment
+IdentityFile ~/.ssh/new_rsa
 #paste it in web-02 
 vi authorized_keys
+#in web-01
+sudo ufw allow from 34.239.207.152 to any port 3306
+sudo ufw status
+#rule added
+#for checking MySQL configuration sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
+mysql -u root -p
+SHOW MASTER STATUS;
+sudo service mysql restart
+mysqldump -u root -p tyrell_corp > tyrell_cor.sql
+scp tyrell_cor.sql ubuntu@34.239.207.152:/tmp/
 
-sudo vi /etc/ssh/ssh_config
+
