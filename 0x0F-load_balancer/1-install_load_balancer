@@ -1,24 +1,19 @@
 #!/usr/bin/env bash
-# Installs HAProxy with the following configurations:
-# - Enables management via the init script.
-# - Distributes requests using a round-robin algorithm.
+# This script configures the server load balancer.
+sudo apt-get install software-properties-common -y
+sudo add-apt-repository ppa:vbernat/haproxy-2.4 -y
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get install haproxy=2.4.\* -y
+sudo sed -i 's/ENABLED=0/ENABLED=1/' /etc/default/haproxy
+sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.original
+echo "backend web-backend
+        balance roundrobin
+        server 507821-web-01 100.26.246.108:80 check
+        server 507821-web-02 34.239.207.152:80 check
 
-sudo apt-get install -y haproxy
-
-echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
-
-cat <<EOT | sudo tee -a /etc/haproxy/haproxy.cfg
-frontend Randommall.tech
-    timeout client  30000
-    bind 0:80
-    default_backend Randommall.tech_backend
-
-backend Randommall.tech_backend
-    timeout connect  3000
-    timeout server  30000
-    balance round-robin
-    server 507821-web-01 100.26.246.108:80 check
-    server 507821-web-02 34.239.207.152:80 check
-EOT
-
-sudo service haproxy restart
+frontend http
+        bind *:80
+        mode http
+        default_backend web-backend" >> /etc/haproxy/haproxy.cfg
+sudo service haproxy start
