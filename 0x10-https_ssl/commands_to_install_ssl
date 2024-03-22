@@ -1,4 +1,6 @@
 sudo apt update
+sudo apt install snapd
+sudo apt-get remove certbot
 sudo apt-get install certbot
 sudo service haproxy stop
 curl localhost
