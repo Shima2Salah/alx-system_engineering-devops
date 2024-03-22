@@ -1,1 +1,2 @@
 sudo vi /etc/ufw/before.rules
+sudo ufw reload
