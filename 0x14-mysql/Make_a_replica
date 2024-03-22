@@ -26,3 +26,10 @@ CREATE DATABASE IF NOT EXISTS tyrell_corp;
 sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
 sudo service mysql restart
 mysql -u root -p
+CHANGE MASTER TO
+MASTER_HOST = 100.26.246.108,
+MASTER_USER = 'replica_user',
+MASTER_PASSWORD = 123,
+MASTER_LOG_FILE = 'mysql-bin.000002',
+MASTER_LOG_POS = 107;
+START SLAVE;
