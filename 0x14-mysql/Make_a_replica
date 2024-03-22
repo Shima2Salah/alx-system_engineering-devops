@@ -20,5 +20,8 @@ mysqldump -u root -p tyrell_corp > tyrell_cor.sql
 scp tyrell_cor.sql ubuntu@34.239.207.152:/tmp/
 #on web-02
 ls /tmp/tyrell_cor.sql
-
+mysql -u root -p
+CREATE DATABASE IF NOT EXISTS tyrell_corp;
+# mysql -u root -p tyrell_corp < /tmp/tyrell_cor.sql
+sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
 
