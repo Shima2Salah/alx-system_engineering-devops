@@ -24,4 +24,5 @@ mysql -u root -p
 CREATE DATABASE IF NOT EXISTS tyrell_corp;
 # mysql -u root -p tyrell_corp < /tmp/tyrell_cor.sql
 sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
-
+sudo service mysql restart
+mysql -u root -p
