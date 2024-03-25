@@ -17,7 +17,7 @@ if __name__ == "__main__":
     tasks = [task for task in todos]
     with open(sys.argv[1] + ".csv", 'w', newline='') as csvfile:
         taskwriter = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
-        for t in todo:
-            taskwriter.writerow([int(sys.argv[1]), user.get('username'),
+        for t in todos:
+            taskwriter.writerow([int(sys.argv[1]), username,
                                  t.get('completed'),
                                  t.get('title')])
