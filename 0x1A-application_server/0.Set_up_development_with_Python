@@ -17,3 +17,26 @@ gunicorn --bind 0.0.0.0:5000 web_flask.0-hello_route:app
 sudo lsof -i :5000
 sudo kill 164884 #(pid with the problem)
 pip install Flask
+Install and activate venv
+$ sudo apt-get install python3.8-venv
+$ python3 -m venv venv
+$ source venv/bin/activate
+#Install MySQLdb module version 2.0.x
+sudo apt-get install python3-dev
+sudo apt-get install libmysqlclient-dev
+sudo apt-get install zlib1g-dev
+sudo apt-get install pkg-config
+sudo pip3 install mysqlclient
+sudo apt-get install python3-mysql.connector
+...
+$ python3
+>>> import MySQLdb
+>>> MySQLdb.version_info 
+(2, 0, 3, 'final', 0)
+Install SQLAlchemy module version 1.4.x
+$ sudo pip3 install SQLAlchemy
+...
+$ python3
+>>> import sqlalchemy
+>>> sqlalchemy.__version__ 
+'1.4.22'
