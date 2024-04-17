@@ -6,3 +6,6 @@ sudo nginx -t #(gor testing configuration)
 sudo service nginx restart
 sudo service nginx status
 sudo vi /etc/nginx/sites-available/default
+pip3 install flask_cors
+pip3 install flasgger
+pip3 install SQLAlchemy==1.4.*
