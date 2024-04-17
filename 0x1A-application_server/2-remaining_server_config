@@ -1,0 +1,8 @@
+ls /etc/nginx
+ls /etc/nginx/sites-available
+ls /etc/nginx/sites-available/default
+sudo vi /etc/nginx/sites-available/default #(put installion code)
+sudo nginx -t #(gor testing configuration)
+sudo service nginx restart
+sudo service nginx status
+sudo vi /etc/nginx/sites-available/default
