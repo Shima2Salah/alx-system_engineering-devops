@@ -10,3 +10,13 @@ pip3 install flask_cors
 pip3 install flasgger
 pip3 install SQLAlchemy==1.4.*
 tmux new-session -d 'gunicorn --bind 0.0.0.0:5003 web_dynamic.2-hbnb:app'
+sudo vi /etc/systemd/system/gunicorn.service
+sudo systemctl daemon-reload
+sudo systemctl enable gunicorn
+sudo systemctl restart gunicorn
+sudo systemctl start gunicorn
+sudo systemctl status gunicorn
+vi /tmp/airbnb-access.log
+vi /tmp/airbnb-error.log
+chmod u+x /tmp/airbnb-access.log
+chmod u+x /tmp/airbnb-error.log
