@@ -28,7 +28,7 @@ server {
                 try_files $uri $uri/ =404;               
         }
 
-        location /hbnb_static/ {
+	    location /static/ {
                 alias web_dynamic/static/;
                 try_files $uri $uri/ =404;
         }
